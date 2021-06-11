@@ -1,0 +1,92 @@
+﻿@model laba5_oop.Storage.Entity.Detail
+
+@{
+    ViewData["Title"] = "DetailsOfDetail";
+}
+
+<h1></h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Detail" asp-action="ShowDetail">Details</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.Name)</li>
+    </ol>
+</nav>
+<div>
+    <h4>Detail</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ModelCar)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ModelCar.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Brand.Name)
+        </dd>
+    </dl>
+</div>
+<a asp-action="InOrderFromDetail" class="btn btn-danger" data-toggle="modal" data-target="#ModalCart">In cart </a>
+<div class="modal fade" id="ModalCart" tabindex="-1" role="dialog" aria-labelledby="ModalCartLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalCartLabel">Detail will be added to the cart </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Order" asp-action="InOrderFromDetail" asp-route-id="@Model.Id">
+                    <div class="text-danger"></div>
+                    <div class="form-group">
+                        <b><label for="Name" class="col-form-label">Name of detail:</label></b>
+                        <br /><label asp-for="Name" class="col-form-label">@Model.Name</label>
+                    </div>
+                    <div class="form-group">
+                        <b><label for="Price" class="col-form-label">Price:</label></b>
+                        <br /><label asp-for="Price" class="col-form-label">@Model.Price</label>
+                    </div>
+                    <div class="form-group">
+                        <b><label for="Price" class="col-form-label">In order:</label></b>
+                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.OrderIdList"></select>
+                        <p>
+                            <a asp-controller="Order" asp-action="CreateOrder">Create new order</a>
+                        </p>
+                        <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Continue">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="ShowDetail">Back to List</a>
+</div>
