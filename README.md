@@ -1,3 +1,4 @@
+![plob](https://gitlab.com/Vladosicc/lab_ASP-NET_MVC_EFCore/badges/main/pipeline.svg)
 # РазработкаASP.NET Core MVC приложения с использованием технологии Entity Framework Core
 Определение не менее семи сущностей;
 
